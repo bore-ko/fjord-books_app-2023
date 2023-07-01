@@ -1,6 +1,14 @@
 ---
 ja:
   activerecord:
+    models:
+      book: 本
+    attributes:
+      book:
+        title: タイトル
+        memo: メモ
+        author: 著者
+        picture: 画像
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -181,22 +189,13 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-  Books: 本棚
-  Title: タイトル
-  title: タイトル
-  Memo: メモ
-  memo: メモ
-  Author: 著者
-  author: 著者
-  Picture: 写真
-  picture: 写真
-  Show this book: この本を見る
-  New book: 新しい本 
-  Edit this book: 編集する
-  Back to books: 本棚に戻る
-  Destroy this book: 削除する
-  Editing book: 本の編集
-  Book was successfully updated.: 更新されました。
-  Book was successfully destroyed: 削除されました。
-  Book was successfully created: 作成されました。
-  
+  books: 本棚
+  show_this_book: この本を見る
+  new_book: 新しい本
+  edit_this_book: 編集する
+  back_to_books: 本棚に戻る
+  destroy_this_book: 削除する
+  editing_book: 本の編集
+  book_was_successfully_updated: 更新されました。
+  book_was_successfully_destroyed: 削除されました。
+  book_was_successfully_created: 作成されました。
