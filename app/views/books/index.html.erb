@@ -1,13 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
-<h1><%= t(:books) %></h1>
+<h1><%= t '.heading' %></h1>
 
 <div id="books" class="index-items">
   <% @books.each do |book| %>
     <div class="index-item">
       <%= render book %>
       <p>
-        <%= link_to t(:show_this_book), book %>
+        <%= link_to t(:show_book), book %>
       </p>
     </div>
   <% end %>
