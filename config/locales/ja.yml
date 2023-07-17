@@ -189,12 +189,13 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-  show_book: この本を見る
-  new_book: 新しい本
-  edit_book: 編集する
-  back_books: 本棚に戻る
-  destroy_book: 削除する
-  editing_book: 本の編集
+  button:
+    show_book: この本を見る
+    new_book: 新しい本
+    edit_book: 編集する
+    back_books: 本棚に戻る
+    destroy_book: 削除する
+    editing_book: 本の編集
   books:
     index:
       heading: 本棚
@@ -202,9 +203,9 @@ ja:
       heading: 本の登録
     edit:
       heading: 本の編集
-    create:
-      success: 本が作成されました。
-    destroy:
-      success: 本が削除されました。
-    update:
-      success: 本が更新されました。
+  create:
+    success: "%{name}が作成されました。"
+  destroy:
+    success: "%{name}が削除されました。"
+  update:
+    success: "%{name}が更新されました。"

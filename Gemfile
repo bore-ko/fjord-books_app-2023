@@ -66,6 +66,7 @@ group :development do
   # gem "spring"
 
   gem 'erb_lint', require: false
+  gem 'i18n_generators'
   gem 'rubocop-fjord', require: false
   gem 'rubocop-rails', require: false
 end
@@ -78,5 +79,3 @@ group :test do
 end
 
 gem 'carrierwave'
-
-gem 'i18n_generators'
