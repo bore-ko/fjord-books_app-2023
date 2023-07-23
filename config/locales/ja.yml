@@ -189,7 +189,7 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-  button:
+  move:
     show_book: この本を見る
     new_book: 新しい本
     edit_book: 編集する
@@ -203,9 +203,8 @@ ja:
       heading: 本の登録
     edit:
       heading: 本の編集
-  create:
-    success: "%{name}が作成されました。"
-  destroy:
-    success: "%{name}が削除されました。"
-  update:
-    success: "%{name}が更新されました。"
+  controllers:
+    common:
+      on_create: "%{name}が作成されました。"
+      on_destroy: "%{name}が削除されました。"
+      on_update: "%{name}が更新されました。"

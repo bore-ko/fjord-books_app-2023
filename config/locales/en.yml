@@ -39,7 +39,7 @@ en:
         memo: memo
         author: author
         picture: picture
-  button:
+  move:
     show_book: Show this book
     new_book: New book
     edit_book: Edit this book
@@ -53,9 +53,8 @@ en:
       heading: New book
     edit:
       heading: Editing book
-  create:
-    success: "%{name} was successfully created."
-  destroy:
-    success: "%{name} was successfully destroyed."
-  update:
-    success: "%{name} was successfully updated."
+  controllers:
+    common:
+      on_create: "%{name} was successfully created."
+      on_destroy: "%{name} was successfully destroyed."
+      on_update: "%{name} was successfully updated."
