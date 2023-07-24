@@ -30,4 +30,31 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      book: Book
+    attributes:
+      book:
+        title: title
+        memo: memo
+        author: author
+        picture: picture
+  move:
+    show_book: Show this book
+    new_book: New book
+    edit_book: Edit this book
+    back_books: Back to books
+    destroy_book: Destroy this book
+    editing_book: Editing book
+  books:
+    index:
+      heading: Books
+    new:
+      heading: New book
+    edit:
+      heading: Editing book
+  controllers:
+    common:
+      on_create: "%{name} was successfully created."
+      on_destroy: "%{name} was successfully destroyed."
+      on_update: "%{name} was successfully updated."
