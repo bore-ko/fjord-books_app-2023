@@ -23,7 +23,7 @@
       <% link_to t('devise.shared.links.edit_profile'), edit_user_registration_path, class: 'navbar-link' %> |
       <% link_to t('devise.shared.links.logout'), destroy_user_session_path, method: :delete, class: 'navbar-link' %>
     <% else %>
-      <%= link_to t('devise.shared.links.sign_up'), new_user_registration_path, class: 'navbar-link'  %> |
+      <%= link_to t('devise.shared.links.sign_up'), new_user_registration_path, class: 'navbar-link' %> |
       <%= link_to t('devise.shared.links.sign_in'), new_user_session_path, class: 'navbbar-link' %>
     <% end %>
     <%= yield %>
