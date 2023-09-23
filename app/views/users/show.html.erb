@@ -12,6 +12,6 @@
 <strong><%= User.human_attribute_name(:self_introduction) %></strong>
 <p><%= @user.self_introduction %></p>
 
-<% if current_user.id == @user[:id] %>
+<% if current_user.id == @user.id %>
  <%= link_to t('devise.shared.links.edit_profile'), edit_user_registration_path %>
 <% end %>
