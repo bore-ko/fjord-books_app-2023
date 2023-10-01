@@ -1,0 +1,10 @@
+<h1><%= t('views.common.title_index', name: Report.model_name.human) %></h1> 
+<%= button_to t('views.common.title_new', name: Report.model_name.human), new_report_path, method: :get %>
+<% if @reports.present? %>
+  <% @reports.each do |report| %>
+    <p>
+      <%= Report.human_attribute_name(:title) %>
+      <%= link_to "#{report.title}", report  %>
+    </p>
+  <% end %>
+<% end %>

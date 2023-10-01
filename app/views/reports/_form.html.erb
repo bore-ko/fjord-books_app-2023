@@ -1,0 +1,15 @@
+<%= form_with(model: report) do |form| %>
+  <div>
+    <%= form.label :title, style: 'display: block' %>
+    <%= form.text_field :title, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: 'display: block' %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
