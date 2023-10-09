@@ -10,3 +10,6 @@
   <%= link_to t('views.common.back', name: Report.model_name.human), reports_path %></p>
 
   <%= button_to t('views.common.destroy', name: Report.model_name.human), @report, method: :delete %>
+
+<%= render 'comments/contents' %>
+<%= render 'comments/form' %>

@@ -1,0 +1,17 @@
+<strong><%= Comment.model_name.human %></strong>
+
+<% if @comments.present?  %>
+  <% @comments.each do |comment| %>
+    <% if comment.persisted? %>
+        <p>
+          <%= comment.content %>
+          <%#= comment.user_id %>
+          <%= comment.created_at %>
+          <%=  %>
+          <%= button_to t('views.common.destroy', name: Comment.model_name.human), polymorphic_path([@report,  comment]), method: :delete %>
+        </p>
+      <% end %>
+  <% end %>
+<% else %>
+  <P>コメントはありません。</P>
+<% end %>
