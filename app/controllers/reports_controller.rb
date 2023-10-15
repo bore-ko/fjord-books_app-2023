@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ReportsController < ApplicationController
-  before_action :set_report, only: %i[ show edit update destroy ]
+  before_action :set_report, only: %i[show edit update destroy]
   def index
     @reports = Report.all
   end
@@ -9,15 +11,15 @@ class ReportsController < ApplicationController
   end
 
   def show
-    # @comment = @report.comments.build
     @comments = @report.comments
+    @comment = Comment.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @report = Report.new(report_params)
+    @report.user = current_user
     if @report.save
       redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
     else
@@ -39,7 +41,7 @@ class ReportsController < ApplicationController
   end
 
   private
-  
+
   def set_report
     @report = Report.find(params[:id])
   end

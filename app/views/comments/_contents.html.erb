@@ -1,15 +1,21 @@
-<strong><%= Comment.model_name.human %></strong>
-
-<% if @comments.present?  %>
-  <% @comments.each do |comment| %>
+<% if comments.present? %>
+  <% comments.each do |comment| %>
     <% if comment.persisted? %>
-        <p>
-          <%= comment.content %>
-          <%#= comment.user_id %>
-          <%= comment.created_at %>
-          <%=  %>
-          <%= button_to t('views.common.destroy', name: Comment.model_name.human), polymorphic_path([@report,  comment]), method: :delete %>
-        </p>
+        <table>
+          <tr>
+            <th><%= Comment.model_name.human %></th>
+            <th>ユーザー名</th>
+            <th>投稿日時</th>
+          </tr>
+          <tr>
+            <td><%= comment.content %></td>
+            <td><%= comment.user.name.present? ? comment.user.name : comment.user.email %></td>
+            <td><%= comment.created_at.strftime('%Y/%m/%d %H:%I') %></td>
+          </tr>
+        </table>
+          <% if comment.user == current_user %>
+            <%= button_to t('views.common.destroy', name: Comment.model_name.human), polymorphic_path([commentable, comment]), method: :delete %>
+          <% end %>
       <% end %>
   <% end %>
 <% else %>
