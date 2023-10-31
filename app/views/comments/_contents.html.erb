@@ -4,13 +4,13 @@
         <table>
           <tr>
             <th><%= Comment.model_name.human %></th>
-            <th>ユーザー名</th>
-            <th>投稿日時</th>
+            <th><%= User.human_attribute_name(:name) %></th>
+            <th><%= Report.human_attribute_name(:created_at) %></th>
           </tr>
           <tr>
             <td><%= comment.content %></td>
             <td><%= comment.user.name.present? ? comment.user.name : comment.user.email %></td>
-            <td><%= comment.created_at.strftime('%Y/%m/%d %H:%I') %></td>
+            <td><%= l comment.created_at, format: :short %></td>
           </tr>
         </table>
           <% if comment.user == current_user %>
@@ -19,5 +19,5 @@
       <% end %>
   <% end %>
 <% else %>
-  <P>コメントはありません。</P>
+  <P><%= t('views.common.not_find', name: Comment.model_name.human) %></P>
 <% end %>
