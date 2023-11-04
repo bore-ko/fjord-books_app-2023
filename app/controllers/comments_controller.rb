@@ -12,9 +12,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    return unless @comment.user == current_user
-
+    @comment = current_user.comments.find(params[:id])
     @comment.destroy
     redirect_to @commentable, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human)
   end
