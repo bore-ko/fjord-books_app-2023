@@ -1,0 +1,23 @@
+<% if comments.present? %>
+  <% comments.each do |comment| %>
+    <% if comment.persisted? %>
+        <table>
+          <tr>
+            <th><%= Comment.model_name.human %></th>
+            <th><%= User.human_attribute_name(:name) %></th>
+            <th><%= Report.human_attribute_name(:created_at) %></th>
+          </tr>
+          <tr>
+            <td><%= comment.content %></td>
+            <td><%= comment.user.name.present? ? comment.user.name : comment.user.email %></td>
+            <td><%= l comment.created_at, format: :short %></td>
+          </tr>
+        </table>
+          <% if comment.user == current_user %>
+            <%= button_to t('views.common.destroy', name: Comment.model_name.human), polymorphic_path([commentable, comment]), method: :delete %>
+          <% end %>
+      <% end %>
+  <% end %>
+<% else %>
+  <P><%= t('views.common.not_find', name: Comment.model_name.human) %></P>
+<% end %>
