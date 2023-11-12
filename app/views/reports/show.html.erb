@@ -2,6 +2,7 @@
 
 <div class="show-item">
   <%= render @report %>
+  <%= render 'mention', report: @report %>
 </div>
 
 <%= render 'shared/comments', commentable: @report %>

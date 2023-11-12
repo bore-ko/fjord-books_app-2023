@@ -19,20 +19,39 @@ class ReportsController < ApplicationController
   def edit; end
 
   def create
-    @report = current_user.reports.new(report_params)
-
-    if @report.save
-      redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
-    else
-      render :new, status: :unprocessable_entity
+    ActiveRecord::Base.transaction do
+      @report = current_user.reports.new(report_params)
+      if @report.save
+        mentioned_reports = report_params[:content].scan(%r{http://localhost:3000/reports/(\d+)})
+        if mentioned_reports.present?
+          mentioned_reports.flatten.each do |report_id|
+            mention = Mention.new(mentioning_report_id: @report.id, mentioned_report_id: report_id)
+            mention.save
+          end
+        end
+        redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
   def update
-    if @report.update(report_params)
-      redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
-    else
-      render :edit, status: :unprocessable_entity
+    ActiveRecord::Base.transaction do
+      if @report.update(report_params)
+        mentioned_reports = report_params[:content].scan(%r{http://localhost:3000/reports/(\d+)})
+        if mentioned_reports.present?
+          mentioning_report = Mention.where(mentioning_report_id: @report.id)
+          mentioning_report.each(&:delete)
+          mentioned_reports.flatten.each do |report_id|
+            mention = Mention.new(mentioning_report_id: @report.id, mentioned_report_id: report_id)
+            mention.save
+          end
+        end
+        redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
   end
 
