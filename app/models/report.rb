@@ -11,7 +11,8 @@ class Report < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
-  after_save -> { saved_mentions(content) }
+  before_save -> { destroy_mentions(id) }
+  after_save -> { save_mentions(content) }
 
   def editable?(target_user)
     user == target_user
@@ -21,27 +22,16 @@ class Report < ApplicationRecord
     created_at.to_date
   end
 
-  def created_report_and_mentions(report)
-    ActiveRecord::Base.transaction do
-      report.save!
-    end
+  def destroy_mentions(id)
+    mentioning_reports = Mention.where(mentioning_report_id: id)
+    mentioning_reports.each(&:destroy!) if mentioning_reports.present?
   end
 
-  def updated_report_and_mentions(report, report_params)
-    ActiveRecord::Base.transaction do
-      mentioning_reports = Mention.where(mentioning_report_id: report.id)
-      mentioning_reports.each(&:destroy!) if mentioning_reports.present?
-      report.update!(report_params)
-    end
-  end
-
-  def saved_mentions(content)
+  def save_mentions(content)
     mentioned_report_ids = content.scan(%r{http://localhost:3000/reports/(\d+)})
-    if mentioned_report_ids.present? # rubocop:disable Style/GuardClause
-      mentioned_report_ids.flatten.each do |report_id|
-        mention = Mention.new(mentioning_report_id: id, mentioned_report_id: report_id)
-        mention.save!
-      end
+    mentioned_report_ids.flatten.each do |report_id|
+      mention = Mention.new(mentioning_report_id: id, mentioned_report_id: report_id)
+      mention.save!
     end
   end
 end
