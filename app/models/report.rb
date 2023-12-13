@@ -11,7 +11,7 @@ class Report < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
-  before_save -> { destroy_mentions(id) }
+  before_save -> { destroy_mentions }
   after_save -> { save_mentions(content) }
 
   def editable?(target_user)
@@ -22,9 +22,8 @@ class Report < ApplicationRecord
     created_at.to_date
   end
 
-  def destroy_mentions(id)
-    mentioning_reports = Mention.where(mentioning_report_id: id)
-    mentioning_reports.each(&:destroy!) if mentioning_reports.present?
+  def destroy_mentions
+    active_mentions.each(&:destroy!) if active_mentions.present?
   end
 
   def save_mentions(content)
