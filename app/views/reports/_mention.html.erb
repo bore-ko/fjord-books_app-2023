@@ -1,0 +1,12 @@
+<% if report.mentioned_reports.present? %>
+
+  <div><%= t('report.mention.title', report: Report.model_name.human, mention: Mention.model_name.human) %></div>
+
+  <% report.mentioned_reports.each do |mention| %>
+    <div>
+      <%= mention.user.name? ? mention.user.name : mention.user.email %>
+      <a href="http://localhost:3000"><%= mention.title %></a><%= 'からリンク' %>
+    </div>
+  <% end %>
+
+<% end %>

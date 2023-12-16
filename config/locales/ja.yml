@@ -221,3 +221,6 @@ ja:
     registrations:
       edit:
         title: "アカウント編集"
+  report:
+    mention:
+      title: "この%{report}に%{mention}している%{report}"

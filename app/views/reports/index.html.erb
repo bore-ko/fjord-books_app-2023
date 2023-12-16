@@ -4,6 +4,7 @@
   <% @reports.each do |report| %>
     <div class="index-item">
       <%= render report %>
+      <%= render 'mention', report: report %>
       <p>
         <%= link_to t('views.common.show', name: Report.model_name.human.downcase), report %>
       </p>
