@@ -1,11 +1,5 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-はじめての日報:
+first_report:
   user: alice
   title: 1日目
   content: 今日からはじめました
-
-#two:
-#  user: two
-#  title: MyString
-#  content: MyText
