@@ -12,11 +12,9 @@ class ReportTest < ActiveSupport::TestCase
   end
 
   test '#created_on' do
-    create_date = Date.new(2023, 12, 13)
-    other_date = Date.new(2023, 12, 14)
     user = User.create!(email: 'bar@exsample.com', password: 'password')
-    report = Report.create!(user:, title: 'title', content: 'content', created_at: create_date)
-    assert_equal create_date.strftime('%Y-%m-%d'), report.created_on.strftime('%Y-%m-%d')
-    assert_not_equal other_date.strftime('%Y-%m-%d-%a'), report.created_on.strftime('%Y-%m-%d-%a')
+    report = Report.create!(user:, title: 'title', content: 'content')
+    assert_equal Date.current, report.created_on
+    assert_not_equal Date.new(2023, 12, 1), report.created_on
   end
 end
